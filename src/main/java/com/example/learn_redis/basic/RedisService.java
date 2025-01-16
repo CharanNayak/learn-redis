@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RedisService {
 
@@ -30,5 +32,14 @@ public class RedisService {
 
     public User getNestedObjectFromCache() {
         return (User) redisTemplate.opsForValue().get("user");
+    }
+
+    public boolean addListObjectToCache(List<User> users) {
+        redisTemplate.opsForValue().set("userlist", users                               );
+        return true;
+    }
+
+    public List<User> getListObjectFromCache() {
+        return (List<User>) redisTemplate.opsForValue().get("userlist");
     }
 }
