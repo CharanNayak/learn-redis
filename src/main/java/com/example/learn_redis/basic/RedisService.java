@@ -22,4 +22,13 @@ public class RedisService {
     public Person getObjectFromCache() {
         return (Person) redisTemplate.opsForValue().get("person");
     }
+
+    public boolean addNestedObjectToCache(User user) {
+        redisTemplate.opsForValue().set("user", user);
+        return true;
+    }
+
+    public User getNestedObjectFromCache() {
+        return (User) redisTemplate.opsForValue().get("user");
+    }
 }

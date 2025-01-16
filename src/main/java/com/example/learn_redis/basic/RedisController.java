@@ -27,4 +27,14 @@ public class RedisController {
     public Person getObjectFromCache() {
         return redisService.getObjectFromCache();
     }
+
+    @PostMapping(path = "add-nested-object-to-cache")
+    public boolean addNestedObjectToCache(@RequestBody User user) {
+        return redisService.addNestedObjectToCache(user);
+    }
+
+    @GetMapping(path = "get-nested-object-from-cache")
+    public User getNestedObjectFromCache() {
+        return redisService.getNestedObjectFromCache();
+    }
 }
