@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.util.List;
 
 @Service
@@ -13,7 +14,16 @@ public class RedisService {
     private RedisTemplate<String, Object> redisTemplate;
 
     public boolean addStringToCache(String value) {
-        return redisTemplate.opsForValue().setIfAbsent("name", value);
+        redisTemplate.opsForValue().set("name", value);
+        return true;
+    }
+
+    public String getStringFromCache() {
+        long start = System.currentTimeMillis();
+        String value = (String) redisTemplate.opsForValue().get("name");
+        long end = System.currentTimeMillis();
+        System.out.println("timeTaken=".concat(String.valueOf(end - start)));
+        return "";
     }
 
     public boolean addObjectToCache(Person person) {
