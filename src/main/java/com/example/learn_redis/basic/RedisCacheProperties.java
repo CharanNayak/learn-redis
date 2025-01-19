@@ -1,5 +1,8 @@
 package com.example.learn_redis.basic;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+//@ConfigurationProperties(prefix = "learn.redis")
 public class RedisCacheProperties {
 
     private boolean isClusterMode = true;

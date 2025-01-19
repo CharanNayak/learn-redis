@@ -1,0 +1,6 @@
+#For connecting app container (learn-redis) to redis container (build1-redis-1)
+
+#Capture ip address of redis container (build1-redis-1) ip address by inspecting the common network build1_default
+docker inspect build1_default
+
+docker run -e SPRING_DATA_REDIS_HOST=172.19.0.2 -p 8080:8080 --network build1_default learn-redis:1.0
