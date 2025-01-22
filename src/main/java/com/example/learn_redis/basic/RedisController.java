@@ -26,6 +26,11 @@ public class RedisController {
         return redisService.addStringToCache(value);
     }
 
+    @GetMapping(path = "get-string-from-cache")
+    public String getStringFromCache() {
+        return redisService.getStringFromCache();
+    }
+
     @PostMapping(path = "add-object-to-cache", consumes = MediaType.APPLICATION_JSON_VALUE)
     public boolean addObjectToCache(@RequestBody Person person) {
         return redisService.addObjectToCache(person);

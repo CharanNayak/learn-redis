@@ -27,7 +27,7 @@ public class RedisService {
         String value = (String) redisTemplate.opsForValue().get("name");
         long end = System.currentTimeMillis();
 //        System.out.println("timeTaken=".concat(String.valueOf(end - start)));
-        return "";
+        return "working";
     }
 
     public String getStringFromCacheForKey(String key) {
