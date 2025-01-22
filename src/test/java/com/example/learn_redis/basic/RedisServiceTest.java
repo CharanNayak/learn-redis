@@ -65,7 +65,6 @@ class RedisServiceTest {
         redisService.addStringToCacheForKey("small", "val1");
         redisService.addStringToCacheForKey("large", tenMBText);
 
-
         IntStream.range(1, 10).asLongStream()
                 .parallel()
                 .forEach(e -> {
@@ -78,7 +77,6 @@ class RedisServiceTest {
                         redisService.getStringFromCacheForKey("small");
                         System.out.println("small " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
                     }
-
                 });
     }
 
@@ -88,7 +86,6 @@ class RedisServiceTest {
         String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCacheForKey("large 1", tenMBText);
         redisService.addStringToCacheForKey("large 2", tenMBText);
-
 
         IntStream.range(1, 10).asLongStream()
                 .parallel()
@@ -102,17 +99,14 @@ class RedisServiceTest {
                         redisService.getStringFromCacheForKey("large 2");
                         System.out.println("large 2 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
                     }
-
                 });
     }
 
     @Test
     void testParallelismForDiffSmallSizeKey() throws URISyntaxException, IOException {
         System.out.println("testParallelismForDiffSmallSizeKey - 2 small keys - lot faster");
-        String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCacheForKey("small 1", "val1");
         redisService.addStringToCacheForKey("small 2", "val2");
-
 
         IntStream.range(1, 10).asLongStream()
                 .parallel()
@@ -124,9 +118,77 @@ class RedisServiceTest {
                     } else {
                         long start = System.currentTimeMillis();
                         redisService.getStringFromCacheForKey("small 2");
-                        System.out.println("small 2" + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                        System.out.println("small 2 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
                     }
+                });
+    }
 
+    @Test
+    void testParallelismFor100kbSizeKeys() throws URISyntaxException, IOException {
+        String size = "100kb";
+        System.out.println("testParallelismFor" + size + "SizeKeys - 2 " + size + " keys - Ideal recommended max size with response time of 100ms");
+        String hundredKBText = Files.readString(Path.of(ClassLoader.getSystemResource(size + ".txt").toURI()));
+        redisService.addStringToCacheForKey(size + " 1", hundredKBText);
+        redisService.addStringToCacheForKey(size + " 2", hundredKBText);
+
+        IntStream.range(1, 10).asLongStream()
+                .parallel()
+                .forEach(e -> {
+                    if(ThreadLocalRandom.current().nextBoolean()) {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 1");
+                        System.out.println(size + " 1 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    } else {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 2");
+                        System.out.println(size + " 2 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    }
+                });
+    }
+
+    @Test
+    void testParallelismFor500kbSizeKeys() throws URISyntaxException, IOException {
+        String size = "500kb";
+        System.out.println("testParallelismFor" + size + "SizeKeys - 2 " + size + " keys - slowed with response time of 400ms");
+        String hundredKBText = Files.readString(Path.of(ClassLoader.getSystemResource(size + ".txt").toURI()));
+        redisService.addStringToCacheForKey(size + " 1", hundredKBText);
+        redisService.addStringToCacheForKey(size + " 2", hundredKBText);
+
+        IntStream.range(1, 10).asLongStream()
+                .parallel()
+                .forEach(e -> {
+                    if(ThreadLocalRandom.current().nextBoolean()) {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 1");
+                        System.out.println(size + " 1 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    } else {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 2");
+                        System.out.println(size + " 2 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    }
+                });
+    }
+
+    @Test
+    void testParallelismFor1mbSizeKeys() throws URISyntaxException, IOException {
+        String size = "1mb";
+        System.out.println("testParallelismFor" + size + "SizeKeys - 2 " + size + " keys - slowed with response time of 800ms");
+        String hundredKBText = Files.readString(Path.of(ClassLoader.getSystemResource(size + ".txt").toURI()));
+        redisService.addStringToCacheForKey(size + " 1", hundredKBText);
+        redisService.addStringToCacheForKey(size + " 2", hundredKBText);
+
+        IntStream.range(1, 10).asLongStream()
+                .parallel()
+                .forEach(e -> {
+                    if(ThreadLocalRandom.current().nextBoolean()) {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 1");
+                        System.out.println(size + " 1 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    } else {
+                        long start = System.currentTimeMillis();
+                        redisService.getStringFromCacheForKey(size + " 2");
+                        System.out.println(size + " 2 " + e + " name " + Thread.currentThread().getName() + " " + (System.currentTimeMillis() - start));
+                    }
                 });
     }
 }
