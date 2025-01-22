@@ -45,6 +45,7 @@ class RedisServiceTest {
 
     @Test
     void testParallelismForSameKey() throws URISyntaxException, IOException {
+        System.out.println("testParallelismForSameKey - 1 large key - slower");
         String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCache(tenMBText);
 
@@ -58,7 +59,8 @@ class RedisServiceTest {
     }
 
     @Test
-    void testParallelismForForDiffSizeKey() throws URISyntaxException, IOException {
+    void testParallelismForDiffSizeKey() throws URISyntaxException, IOException {
+        System.out.println("testParallelismForDiffSizeKey - 1 small & 1 large - large key slows down small key inquiries");
         String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCacheForKey("small", "val1");
         redisService.addStringToCacheForKey("large", tenMBText);
@@ -81,7 +83,8 @@ class RedisServiceTest {
     }
 
     @Test
-    void testParallelismForForSameSizeKey() throws URISyntaxException, IOException {
+    void testParallelismForDiffLargeSizeKey() throws URISyntaxException, IOException {
+        System.out.println("testParallelismForDiffLargeSizeKey - 2 large key - slower");
         String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCacheForKey("large 1", tenMBText);
         redisService.addStringToCacheForKey("large 2", tenMBText);
@@ -104,7 +107,8 @@ class RedisServiceTest {
     }
 
     @Test
-    void testParallelismForForDiffSmallSizeKey() throws URISyntaxException, IOException {
+    void testParallelismForDiffSmallSizeKey() throws URISyntaxException, IOException {
+        System.out.println("testParallelismForDiffSmallSizeKey - 2 small keys - lot faster");
         String tenMBText = Files.readString(Path.of(ClassLoader.getSystemResource("10mb.txt").toURI()));
         redisService.addStringToCacheForKey("small 1", "val1");
         redisService.addStringToCacheForKey("small 2", "val2");
