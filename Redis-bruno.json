@@ -1,0 +1,294 @@
+{
+  "name": "Redis",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "add-list-object-to-cache",
+      "seq": 7,
+      "request": {
+        "url": "http://localhost:8080/add-list-object-to-cache",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "[{\n  \"username\": \"CharanNayak\",\n  \"address\": {\n    \"line1\" : \"101, 1st floor updated\",\n    \"line2\" : \"Abhishek apts\",\n    \"pincode\": 575003\n  }\n}]",
+          "text": "charan",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "add-mb-text-to-cache",
+      "seq": 9,
+      "request": {
+        "url": "http://localhost:8080/add-mb-text-to-cache",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "text",
+          "text": "10",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "add-nested-object-to-cache",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8080/add-nested-object-to-cache",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"username\": \"CharanNayak\",\n  \"address\": {\n    \"line1\" : \"101, 1st floor updated\",\n    \"line2\" : \"Abhishek apts\",\n    \"pincode\": 575003\n  }\n}",
+          "text": "charan",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "add-object-to-cache",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8080/add-object-to-cache",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"age\": 33,\n  \"name\": \"Charan Nayak\"\n}",
+          "text": "charan",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "add-string-to-cache",
+      "seq": 11,
+      "request": {
+        "url": "http://localhost:8080/add-string-to-cache",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "text",
+          "text": "charan",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get-list-object-from-cache",
+      "seq": 8,
+      "request": {
+        "url": "http://localhost:8080/get-list-object-from-cache",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get-mb-text-from-cache",
+      "seq": 11,
+      "request": {
+        "url": "http://localhost:8080/get-mb-text-from-cache",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Accept",
+            "value": "text/plain",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get-nested-object-from-cache",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8080/get-nested-object-from-cache",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get-object-from-cache",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8080/get-object-from-cache",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get-string-from-cache",
+      "seq": 10,
+      "request": {
+        "url": "http://localhost:8080/get-string-from-cache",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Accept",
+            "value": "text/plain",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Redis",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
